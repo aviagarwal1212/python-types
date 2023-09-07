@@ -1,14 +1,23 @@
-my_dict: dict = {"a": 10}
-typed_dict: dict[str, int] = {"a": 10}
-test_dict: dict[int, str] = {1: "first", 2: "second"}
+# for python under 3.10
+from typing import Optional
+
+person: Optional[str] = "Luigi"
+person = None
+
+# also valid >= py3.10
+person: str | None = "Luigi"
+person = None
 
 
-def print_it(some_dict: dict[int, str]):
-    for value in some_dict.values():
-        print(value.title())
+def greet(name: str | None = None):
+    if name is None:
+        print("No one is here")
+    else:
+        print(name)
 
 
-print_it(test_dict)
-
+greet(person)
+greet(None)
+greet()
 # error
-# print_it(typed_dict)
+# greet(10)
