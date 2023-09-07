@@ -1,10 +1,7 @@
-var: str = 'hello'
-number: int = 10
-percent: float = 0.50
-connected: bool = True
+var: str | int | float = 3.10
 
-def format_input(user_input: str) -> None:
-    print(user_input.capitalize())
+def func(user_input: str|int):
+    print(user_input)
 
-format_input('hello world!')
-
+func('text')
+func(10)
