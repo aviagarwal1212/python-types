@@ -1,6 +1,8 @@
-elements: list = [1, 2, 4, "a", "arabica", (10, 5)]
-names: list[str] = ["arabica", "coffee"]
+coordinate: tuple[int, int] = (20, 30)
+coordinate_2: tuple[int, int, int, int] = (10, 20, 30, 40)
+coordinate_3: tuple[int, ...] = (10, 20, 30, 40)
+coordinate_4: tuple[int | str, ...] = (10, 20, "30", "40")
 
-mixed: list[int|str] = ["a", 1]
 
-nested_list: list[list[str]] = [["a", "b"], ["c", "d"]]
+def test():
+    print()
