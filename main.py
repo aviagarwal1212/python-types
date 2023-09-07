@@ -1,7 +1,6 @@
-var: str | int | float = 3.10
+elements: list = [1, 2, 4, "a", "arabica", (10, 5)]
+names: list[str] = ["arabica", "coffee"]
 
-def func(user_input: str|int):
-    print(user_input)
+mixed: list[int|str] = ["a", 1]
 
-func('text')
-func(10)
+nested_list: list[list[str]] = [["a", "b"], ["c", "d"]]
