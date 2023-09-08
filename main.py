@@ -1,11 +1,17 @@
-from typing import Final
+from typing import Iterable
 
-CONSTANT: Final[str] = "I am a constant"
-PI: Final[float] = 3.14
+
+def list_elements(elements: Iterable[str]) -> None:
+    for i, element in enumerate(elements, start=1):
+        print(i, element, sep=": ")
+
+
+people: list[str] = ["Mario", "Luigi", "Peach"]
+list_elements(people)
 
 # error
-# CONSTANT = "testing"
-# PI = 10.5
+# list_elements(10)
 
-print(CONSTANT * 2)
-print(PI)
+numbers: list[int] = [1, 2, 3]
+# error
+list_elements(numbers)
