@@ -1,17 +1,13 @@
-from typing import Iterable
+from typing import Sequence
 
 
-def list_elements(elements: Iterable[str]) -> None:
-    for i, element in enumerate(elements, start=1):
-        print(i, element, sep=": ")
+sample_set: set[int] = {1, 2, 3}
+sample_list: list[int] = [1, 2, 3]
 
 
-people: list[str] = ["Mario", "Luigi", "Peach"]
-list_elements(people)
+def get_first_element(sequence: Sequence[int]) -> int:
+    return sequence[0] if sequence else -1
 
-# error
-# list_elements(10)
 
-numbers: list[int] = [1, 2, 3]
-# error
-list_elements(numbers)
+# print(get_first_element(sample_set))  # error
+print(get_first_element(sample_list))
