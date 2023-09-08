@@ -1,13 +1,37 @@
-from typing import Sequence
+from typing import Callable
+from datetime import datetime
 
 
-sample_set: set[int] = {1, 2, 3}
-sample_list: list[int] = [1, 2, 3]
+def get_time() -> str:
+    return f"{datetime.now():%H:%M:%S}"
 
 
-def get_first_element(sequence: Sequence[int]) -> int:
-    return sequence[0] if sequence else -1
+def repeat(func: Callable, amount: int) -> None:
+    for i in range(amount):
+        print(i + 1)
+        print(func())
 
 
-# print(get_first_element(sample_set))  # error
-print(get_first_element(sample_list))
+repeat(get_time, 3)
+# repeat("bla", 5) # error
+
+
+def print_it(text: str, printer: Callable[[str], None]) -> None:
+    printer(text)
+
+
+def loud_print(text: str) -> None:
+    print(text.upper())
+
+
+def print_number(number: int) -> None:
+    print(number)
+
+
+def louder(text: str) -> str:
+    return text.upper()
+
+
+print_it("hello", loud_print)
+print_it("hello", print_number)  # error
+print_it("hello", louder)  # error
