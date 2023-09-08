@@ -1,2 +1,2 @@
 run:
-	poetry run python basic_homework.py
+	poetry run python main.py
