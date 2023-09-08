@@ -1,23 +1,35 @@
-# for python under 3.10
-from typing import Optional
+class Fruit:
+    def __init__(self, name: str, weight: int):
+        self.name = name
+        self.weight = weight
 
-person: Optional[str] = "Luigi"
-person = None
-
-# also valid >= py3.10
-person: str | None = "Luigi"
-person = None
+    def __repr__(self) -> str:
+        return f"{self.name} (weight: {self.weight})"
 
 
-def greet(name: str | None = None):
-    if name is None:
-        print("No one is here")
-    else:
-        print(name)
+orange: Fruit = Fruit("orange", 100)
+
+# error because Fruit class has the Fruit type
+# apple: int = Fruit("apple", 100)
+
+# error because type annotation
+# apple: Fruit = Fruit(100, 100)
 
 
-greet(person)
-greet(None)
-greet()
-# error
-# greet(10)
+def describe(fruit: Fruit):
+    print(f"{fruit.name} weighs {fruit.weight}g")
+
+
+describe(orange)
+
+
+class Apple(Fruit):
+    ...
+
+
+fuji_apple: Apple = Apple("fuji apple", 200)
+describe(fuji_apple)
+print(fuji_apple)
+
+# not an error
+desi_apple: Fruit = Apple("desi apple", 150)
