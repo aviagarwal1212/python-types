@@ -1,35 +1,26 @@
-class Fruit:
-    def __init__(self, name: str, weight: int):
-        self.name = name
-        self.weight = weight
-
-    def __repr__(self) -> str:
-        return f"{self.name} (weight: {self.weight})"
+def add_numbers(a: int, b: int) -> int:
+    return a + b
 
 
-orange: Fruit = Fruit("orange", 100)
-
-# error because Fruit class has the Fruit type
-# apple: int = Fruit("apple", 100)
-
-# error because type annotation
-# apple: Fruit = Fruit(100, 100)
+# error
+# add_numbers(10, 20.0)
 
 
-def describe(fruit: Fruit):
-    print(f"{fruit.name} weighs {fruit.weight}g")
+def return_nothing(a: int) -> None:
+    # error
+    # return a
+    print(a)
 
 
-describe(orange)
+def return_nothing_also(a: int):
+    # no error
+    return a
 
 
-class Apple(Fruit):
-    ...
+def fetch_user(user_id: int) -> str | None:  # returning an optional
+    users: dict[int, str] = {0: "Mario", 1: "Luigi"}
+    return users.get(user_id)
 
 
-fuji_apple: Apple = Apple("fuji apple", 200)
-describe(fuji_apple)
-print(fuji_apple)
-
-# not an error
-desi_apple: Fruit = Apple("desi apple", 150)
+fetch_user(1)
+fetch_user(99)
