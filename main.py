@@ -1,26 +1,36 @@
-from typing import NewType, TypeAlias
+from dataclasses import dataclass
+from typing import Self
 
 
-UserId: TypeAlias = int
+@dataclass
+class File:
+    filepath: str
+
+    @classmethod
+    def create_file(cls, name: str, ext: str) -> Self:
+        ...
+
+    def __enter__(self) -> Self:
+        ...
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        ...
 
 
-def get_user(userid: UserId) -> str | None:
-    users: dict = {0: "Mario", 1: "Luigi", 2: "Peach"}
-    return users.get(userid)
+file: File = File.create_file("test", "string")
 
 
-print(get_user(0))
-print(get_user(False))
-print(get_user(UserId(0)))
+with File("test") as file:
+    print(file.filepath)
 
 
-NewUserId = NewType("NewUserId", int)
+@dataclass
+class JPEG(File):
+    def jpeg_method(self) -> Self:
+        ...
 
 
-def get_another_user(userid: NewUserId) -> str | None:
-    ...
+jpeg: JPEG = JPEG.create_file("test", "string")
+jpeg.jpeg_method()
 
-
-print(get_another_user(0))  # error
-print(get_another_user(False))  # error
-print(get_another_user(NewUserId(0)))
+another_picture: JPEG = File.create_file("test", "string")  # error
