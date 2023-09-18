@@ -1,18 +1,17 @@
-from typing import Literal
+from dataclasses import dataclass
+from typing import TypeAlias, Callable, Literal
 
-Mode = Literal["r", "w", "a"]
+OptionalStr: TypeAlias = str | None
+Mode: TypeAlias = Literal["r"]
 
+Printer: TypeAlias = Callable[[str], None]
 
-def read_file(file: str, mode: Mode) -> None:
-    print(f"Reading {file} in {mode} mode")
-
-
-read_file("stocks.csv", "r")
-read_file("stocks.csv", "rw")  # error
+FruitType: TypeAlias = "Fruit"
 
 
-def read_another_file(file: str, mode: Literal["r", "w", "a"]) -> None:
-    ...
+@dataclass
+class Fruit:
+    name: str
 
-
-read_another_file("stocks.csv", "rw")  # error
+    def fruit_method(self) -> FruitType:
+        return self
