@@ -1,15 +1,18 @@
-from typing import TypedDict, Required, NotRequired
+from typing import Literal
+
+Mode = Literal["r", "w", "a"]
 
 
-class Coordinate(TypedDict):
-    x: float
-    y: float
-    label: str
-    category: NotRequired[str]
+def read_file(file: str, mode: Mode) -> None:
+    print(f"Reading {file} in {mode} mode")
 
 
-coordinate: Coordinate = {"x": 10, "y": 20, "label": "Profit"}
+read_file("stocks.csv", "r")
+read_file("stocks.csv", "rw")  # error
 
 
-Vote = TypedDict("Vote", {"for": int, "against": int})
-vote: Vote = {"for": 100, "against": 200}
+def read_another_file(file: str, mode: Literal["r", "w", "a"]) -> None:
+    ...
+
+
+read_another_file("stocks.csv", "rw")  # error
