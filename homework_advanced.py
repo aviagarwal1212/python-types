@@ -13,7 +13,7 @@ my_repr: str = get_repr("I love typing!")
 print(my_repr)
 
 # Exercise 3
-numbers: Sequence[int] = [20, 5, 30, 100]
+numbers: list[int] = [20, 5, 30, 100]
 
 
 def get_first_element(elements: Sequence[int]) -> int:
@@ -28,12 +28,14 @@ def say_hello(person: str, greeting: str) -> None:
     print(f"{greeting}, {person}!")
 
 
-def greet(people: Iterable[str], greeting: str, hello_func: Callable[[str, str], None]):
+def greet(
+    people: Iterable[str], greeting: str, hello_func: Callable[[str, str], None]
+) -> None:
     for person in people:
         hello_func(person, greeting)
 
 
-friends: Iterable[str] = ["Mario", "Luigi", "James"]
+friends: list[str] = ["Mario", "Luigi", "James"]
 greet(friends, "Yo", say_hello)
 
 
